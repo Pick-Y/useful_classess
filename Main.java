@@ -3,43 +3,45 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        int[] array = readIntegers();
+        int minValue = findMin(array);
+        System.out.println(minValue);
+    }
 
-        System.out.println("Please insert a number");
-        int number;
-        scanner.nextInt();
+    public static int[] readIntegers(){
 
-        int[] myArray = new int[5];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please choose how many elements to put in the array:");
+        int count = sc.nextInt();
 
-        for (int i = 0; i < myArray.length; i++) {
-            System.out.println("Please insert a number");
-            number = scanner.nextInt();
-            myArray[i] = number;
+        int[] myArray = new int[count];
 
+        for(int i =0; i < count; i++){
+
+            System.out.println("Insert number: ");
+            myArray[i] = sc.nextInt();
         }
 
-        int temp = 0;
+        return myArray;
+    }
+
+    public static int findMin(int[] anArray){
+
+        int min = 0;
+
         for (int i = 0; i < 5; i++)//we get the first number
         {
             for (int j = i + 1; j < 5; j++)//we get the second number
             {
-                if (myArray[i] < myArray[j])//is first number less then second? if yes:
+                if (anArray[i] < anArray[j])//is first number less then second? if yes:
                 {
-                    temp = myArray[i]; //assisgn the value to the temporary variable
-                    myArray[i] = myArray[j]; //make the first number equal to the second number (you are swopping position)
-                    myArray[j] = temp; //assign the value of temp to the first position of the array;
+                    min = anArray[i]; //assisgn the value to the temporary variable
+                    anArray[i] = anArray[j]; //make the first number equal to the second number (you are swopping position)
+                    anArray[j] = min; //assign the value of temp to the first position of the array;
                 }
             }
         }
-
-
-        for (int i = 0; i < myArray.length; i++) {
-            System.out.println(myArray[i]);
-
-
-        }
-       //arranging in discending order
-
+        return min;
     }
 }
 
